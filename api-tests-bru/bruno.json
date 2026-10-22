@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "MERN Demo",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -1,0 +1,22 @@
+meta {
+  name: Ping
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseURL}}/api/ping
+  body: none
+  auth: none
+}
+
+tests {
+  test("responds 200 with a message", function () {
+    expect(res.getStatus()).to.equal(200);
+    expect(res.getBody().message).to.equal("Hello World");
+  });
+}
+
+docs {
+  Health check. Needs no login.
+}

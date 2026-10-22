@@ -1,0 +1,36 @@
+meta {
+  name: Get My Account
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseURL}}/api/users/{{userId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  const body = res.getBody();
+
+  test("responds 200 OK", function () {
+    expect(res.getStatus()).to.equal(200);
+  });
+
+  test("returns the logged-in user", function () {
+    expect(body._id).to.equal(bru.getVar("userId"));
+    expect(body.login).to.equal(bru.getEnvVar("login"));
+  });
+
+  test("never returns the password", function () {
+    expect(body).to.not.have.property("password");
+  });
+}
+
+docs {
+  A protected route: needs the token saved by Login.
+}

@@ -1,0 +1,21 @@
+meta {
+  name: Missing Token
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{baseURL}}/api/users/{{userId}}
+  body: none
+  auth: none
+}
+
+tests {
+  test("a protected route without a token responds 401", function () {
+    expect(res.getStatus()).to.equal(401);
+  });
+}
+
+docs {
+  Proves the account routes are protected: this request deliberately sends no token.
+}
